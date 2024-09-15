@@ -14,7 +14,6 @@ struct NotificationGroup {
     init(_ newEntries: String...) {
         entries = newEntries
     }
-    
 }
 
 class NotificationManager {
@@ -26,55 +25,70 @@ class NotificationManager {
     
     func deregisterAll() {
         for token in observerTokens {
-            NSNotificationCenter.defaultCenter().removeObserver(token)
+            NotificationCenter.default.removeObserver(token)
         }
         
         observerTokens = []
     }
     
-    func registerObserver(name: String!, block: (NSNotification! -> Void)) {
-        let newToken = NSNotificationCenter.defaultCenter().addObserverForName(name, object: nil, queue: nil, usingBlock: {note in
-            block(note)
-        })
-        
+    func registerObserver(name: String, block: @escaping ((Notification) -> Void)) {
+        let observerName = NSNotification.Name(name)
+        let newToken = NotificationCenter.default.addObserver(
+            forName: observerName,
+            object: nil,
+            queue: nil
+        ) { notification in
+            block(notification)
+        }
         observerTokens.append(newToken)
     }
-    func registerObserver(name: String!, dispatchAsyncToMainQueue: Bool, block: (NSNotification! -> Void)) {
-        let newToken = NSNotificationCenter.defaultCenter().addObserverForName(name, object: nil, queue: nil, usingBlock: {note in
+    
+    func registerObserver(name: String, dispatchAsyncToMainQueue: Bool, block: @escaping ((Notification) -> Void)) {
+        let observerName = NSNotification.Name(name)
+        let newToken = NotificationCenter.default.addObserver(
+            forName: observerName,
+            object: nil,
+            queue: nil
+        ) { notification in
             if dispatchAsyncToMainQueue {
-                dispatch_async(dispatch_get_main_queue(), {
-                    block(note)
-                })
+                DispatchQueue.main.async {
+                    block(notification)
+                }
             } else {
-                block(note)
+                block(notification)
             }
-        })
-        
+        }
         observerTokens.append(newToken)
     }
     
-    func registerObserver(name: String!, forObject object: AnyObject!, block: (NSNotification! -> Void)) {
-        self.registerObserver(name, forObject: object, dispatchAsyncToMainQueue: false, block: block)
+    func registerObserver(name: String, forObject object: AnyObject, block: @escaping ((Notification) -> Void)) {
+        self.registerObserver(name: name, forObject: object, dispatchAsyncToMainQueue: false, block: block)
     }
-    func registerObserver(name: String!, forObject object: AnyObject!, dispatchAsyncToMainQueue: Bool, block: (NSNotification! -> Void)) {
-        let newToken = NSNotificationCenter.defaultCenter().addObserverForName(name, object: object, queue: nil, usingBlock: {note in
+    
+    func registerObserver(name: String, forObject object: AnyObject, dispatchAsyncToMainQueue: Bool, block: @escaping ((Notification) -> Void)) {
+        let observerName = NSNotification.Name(name)
+        let newToken = NotificationCenter.default.addObserver(
+            forName: observerName,
+            object: object,
+            queue: nil
+        ) { notification in
             if dispatchAsyncToMainQueue {
-                dispatch_async(dispatch_get_main_queue(), {
-                    block(note)
-                })
+                DispatchQueue.main.async {
+                    block(notification)
+                }
             } else {
-                block(note)
+                block(notification)
             }
-        })
+        }
         
         observerTokens.append(newToken)
     }
     
     
     
-    func registerGroupObserver(group: NotificationGroup, block: (NSNotification! -> Void)) {
+    func registerGroupObserver(group: NotificationGroup, block: @escaping ((Notification) -> Void)) {
         for name in group.entries {
-            self.registerObserver(name, block: block)
+            self.registerObserver(name: name, block: block)
         }
     }
 }
