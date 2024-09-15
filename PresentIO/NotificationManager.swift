@@ -65,11 +65,11 @@ class NotificationManager {
         self.registerObserver(name: name, forObject: object, dispatchAsyncToMainQueue: false, block: block)
     }
     
-    func registerObserver(name: String, forObject object: AnyObject, dispatchAsyncToMainQueue: Bool, block: @escaping ((Notification) -> Void)) {
+    func registerObserver(name: String, forObject object: AnyObject?, dispatchAsyncToMainQueue: Bool, block: @escaping ((Notification) -> Void)) {
         let observerName = NSNotification.Name(name)
         let newToken = NotificationCenter.default.addObserver(
             forName: observerName,
-            object: object,
+            object: nil,
             queue: nil
         ) { notification in
             if dispatchAsyncToMainQueue {
