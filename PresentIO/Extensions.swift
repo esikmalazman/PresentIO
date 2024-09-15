@@ -10,13 +10,13 @@ import Foundation
 
 extension Int {
     func format(f: String) -> String {
-        return NSString(format: "%\(f)d", self) as String
+        return String(format: "%\(f)d", self)
     }
 }
 
 extension Double {
     func format(f: String) -> String {
-        return NSString(format: "%\(f)f", self) as String
+        return String(format: "%\(f)f", self)
     }
     func to_CGFloat() -> CGFloat {
         return CGFloat(self)
@@ -25,7 +25,7 @@ extension Double {
 
 extension CGFloat {
     func format(f: String) -> String {
-        return Double(self).format(f)
+        return Double(self).format(f: f)
     }
 }
 
@@ -46,14 +46,14 @@ extension NSSize {
         }
     }
     func scaleToFit(targetSize: NSSize) -> NSSize {
-
+        
         if NSEqualSizes(self, targetSize) {
             return self
         }
         
         let widthFactor  = targetSize.width / width
         let heightFactor = targetSize.height / height
-
+        
         var scaleFactor :CGFloat = 0.0
         if ( widthFactor < heightFactor ) {
             scaleFactor = widthFactor
@@ -68,6 +68,7 @@ extension NSSize {
         
     }
 }
+
 extension NSPoint {
     func rounded() -> NSPoint {
         return NSPoint(x: Int(self.x), y: Int(self.y))
