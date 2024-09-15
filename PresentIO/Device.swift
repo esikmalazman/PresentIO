@@ -11,7 +11,6 @@ import AVKit
 import AVFoundation
 
 class Device: NSObject, NSCoding {
-    
     var name: String
     var uid: String
     var portraitRect: NSRect
@@ -24,7 +23,7 @@ class Device: NSObject, NSCoding {
         static let landscapeRectKey = "l_rect"
     }
     
-    static let ArchivePath = NSHomeDirectory().stringByAppendingString("/devices")
+    static let ArchivePath = NSHomeDirectory() + "/devices"
 
     convenience init?(fromDevice device: AVCaptureDevice) {
         self.init(name: device.localizedName, uid: device.uniqueID, portraitRect:NSRect(), landscapeRect:NSRect())
@@ -59,20 +58,28 @@ class Device: NSObject, NSCoding {
 
     
     //MARK: NSCoding
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
-        aCoder.encodeObject(uid, forKey: PropertyKey.uidKey)
+    func encode(with coder: NSCoder) {
+     coder.encode(name, forKey: PropertyKey.nameKey)
+     coder.encode(uid, forKey: PropertyKey.uidKey)
         
-        aCoder.encodeObject(NSStringFromRect(portraitRect), forKey: PropertyKey.portraitRectKey)
-        aCoder.encodeObject(NSStringFromRect(landscapeRect), forKey: PropertyKey.landscapeRectKey)
+     coder.encode(NSStringFromRect(portraitRect), forKey: PropertyKey.portraitRectKey)
+     coder.encode(NSStringFromRect(landscapeRect), forKey: PropertyKey.landscapeRectKey)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encode(name, forKey: PropertyKey.nameKey)
+        aCoder.encode(uid, forKey: PropertyKey.uidKey)
+        
+        aCoder.encode(NSStringFromRect(portraitRect), forKey: PropertyKey.portraitRectKey)
+        aCoder.encode(NSStringFromRect(landscapeRect), forKey: PropertyKey.landscapeRectKey)
         
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
-        let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
-        let uid = aDecoder.decodeObjectForKey(PropertyKey.uidKey) as! String
-        let pRect = NSRectFromString(aDecoder.decodeObjectForKey(PropertyKey.portraitRectKey) as! String)
-        let lRect = NSRectFromString(aDecoder.decodeObjectForKey(PropertyKey.landscapeRectKey) as! String)
+        let name = aDecoder.decodeObject(forKey: PropertyKey.nameKey) as! String
+        let uid = aDecoder.decodeObject(forKey: PropertyKey.uidKey) as! String
+        let pRect = NSRectFromString(aDecoder.decodeObject(forKey: PropertyKey.portraitRectKey) as! String)
+        let lRect = NSRectFromString(aDecoder.decodeObject(forKey: PropertyKey.landscapeRectKey) as! String)
         
         // Must call designated initializer.
         self.init(name: name, uid: uid, portraitRect:pRect, landscapeRect:lRect)
