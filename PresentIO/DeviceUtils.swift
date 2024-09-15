@@ -49,11 +49,11 @@ class DeviceUtils {
         
         var device : DeviceUtils
         if((dimensions.width == 1024 && dimensions.height == 768)
-            || (dimensions.width == 768 && dimensions.height == 1024)
-            || (dimensions.width == 900 && dimensions.height == 1200)
-            || (dimensions.width == 1200 && dimensions.height == 900)
-            || (dimensions.width == 1200 && dimensions.height == 1600)
-            || (dimensions.width == 1600 && dimensions.height == 1200)) {
+           || (dimensions.width == 768 && dimensions.height == 1024)
+           || (dimensions.width == 900 && dimensions.height == 1200)
+           || (dimensions.width == 1200 && dimensions.height == 900)
+           || (dimensions.width == 1200 && dimensions.height == 1600)
+           || (dimensions.width == 1600 && dimensions.height == 1200)) {
             device = DeviceUtils(deviceType: .iPad)
         } else {
             device = DeviceUtils(deviceType: .iPhone)
@@ -63,13 +63,13 @@ class DeviceUtils {
         return device
     }
     
-
+    
     func getSkinDeviceImage() -> String {
         let imgLandscape = self.orientation == .Landscape ? "_landscape" : ""
         let imgtype = self.type == .iPad ? "iPad" : "iphone6"
         return "\(imgtype)_white\(imgLandscape)"
     }
-
+    
     func getSkinSize() -> NSSize {
         var size : NSSize
         switch self.type {
@@ -79,8 +79,8 @@ class DeviceUtils {
             size = NSSize(width: 435,height: 646) // 768x1024 (ipad mini)
         }
         return self.orientation == .Portrait ?
-            NSSize(width: size.width, height: size.height) :
-            NSSize(width: size.height, height: size.width)
+        NSSize(width: size.width, height: size.height) :
+        NSSize(width: size.height, height: size.width)
     }
     
     func getFrame() -> CGRect {
@@ -100,8 +100,8 @@ class DeviceUtils {
         let origin = NSPoint(
             x: screenFrame.width / 2 - windowSize.width / 2,
             y: screenFrame.height / 2 - windowSize.height / 2 )
-
-
+        
+        
         return NSRect(origin: origin, size: windowSize)
     }
     
@@ -109,18 +109,33 @@ class DeviceUtils {
     class func registerForScreenCaptureDevices() {
         
         var prop : CMIOObjectPropertyAddress = CMIOObjectPropertyAddress(
-            mSelector: CMIOObjectPropertySelector(kCMIOHardwarePropertyAllowScreenCaptureDevices),
-            mScope: CMIOObjectPropertyScope(kCMIOObjectPropertyScopeGlobal),
-            mElement: CMIOObjectPropertyElement(kCMIOObjectPropertyElementMaster))
+            mSelector: CMIOObjectPropertySelector(
+                kCMIOHardwarePropertyAllowScreenCaptureDevices
+            ),
+            mScope: CMIOObjectPropertyScope(
+                kCMIOObjectPropertyScopeGlobal
+            ),
+            mElement: CMIOObjectPropertyElement(
+                kCMIOObjectPropertyElementMaster
+            )
+        )
         
         var allow:UInt32 = 1
         
-        CMIOObjectSetPropertyData( CMIOObjectID(kCMIOObjectSystemObject),
+        
+        CMIOObjectSetPropertyData(
+            CMIOObjectID(
+                kCMIOObjectSystemObject
+            ),
             &prop,
             0,
             nil,
-            UInt32(sizeofValue(allow)),
-            &allow)
-        
+            UInt32(
+                MemoryLayout.size(
+                ofValue: allow
+                )
+            ),
+            &allow
+        )
     }
 }
