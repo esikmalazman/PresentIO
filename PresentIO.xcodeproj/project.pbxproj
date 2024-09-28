@@ -10,7 +10,6 @@
 		A240ADE11AA11D9D00A19D30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A240ADE01AA11D9D00A19D30 /* AppDelegate.swift */; };
 		A240ADE81AA11D9D00A19D30 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A240ADE71AA11D9D00A19D30 /* Images.xcassets */; };
 		A240ADEB1AA11D9D00A19D30 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A240ADE91AA11D9D00A19D30 /* MainMenu.xib */; };
-		A240ADF71AA11D9D00A19D30 /* PresentIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A240ADF61AA11D9D00A19D30 /* PresentIOTests.swift */; };
 		A240AE011AA11EAB00A19D30 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A240AE001AA11EAB00A19D30 /* AVFoundation.framework */; };
 		A240AE0B1AA2504200A19D30 /* CoreMediaIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A240AE0A1AA2504200A19D30 /* CoreMediaIO.framework */; };
 		A240AE0D1AA304B200A19D30 /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A240AE0C1AA304B200A19D30 /* DeviceUtils.swift */; };
@@ -22,25 +21,12 @@
 		A2FD12E01C5BC1210056244E /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FD12DF1C5BC1210056244E /* Device.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A240ADF11AA11D9D00A19D30 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A240ADD31AA11D9D00A19D30 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A240ADDA1AA11D9D00A19D30;
-			remoteInfo = PresentIO;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		A240ADDB1AA11D9D00A19D30 /* PresentIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PresentIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A240ADDF1AA11D9D00A19D30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A240ADE01AA11D9D00A19D30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A240ADE71AA11D9D00A19D30 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A240ADEA1AA11D9D00A19D30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		A240ADF01AA11D9D00A19D30 /* PresentIOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresentIOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A240ADF51AA11D9D00A19D30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A240ADF61AA11D9D00A19D30 /* PresentIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentIOTests.swift; sourceTree = "<group>"; };
 		A240AE001AA11EAB00A19D30 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A240AE0A1AA2504200A19D30 /* CoreMediaIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMediaIO.framework; path = System/Library/Frameworks/CoreMediaIO.framework; sourceTree = SDKROOT; };
 		A240AE0C1AA304B200A19D30 /* DeviceUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
@@ -63,13 +49,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A240ADED1AA11D9D00A19D30 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -79,7 +58,6 @@
 				A240AE0A1AA2504200A19D30 /* CoreMediaIO.framework */,
 				A240AE001AA11EAB00A19D30 /* AVFoundation.framework */,
 				A240ADDD1AA11D9D00A19D30 /* PresentIO */,
-				A240ADF31AA11D9D00A19D30 /* PresentIOTests */,
 				A240ADDC1AA11D9D00A19D30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,7 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				A240ADDB1AA11D9D00A19D30 /* PresentIO.app */,
-				A240ADF01AA11D9D00A19D30 /* PresentIOTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,23 +97,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A240ADF31AA11D9D00A19D30 /* PresentIOTests */ = {
-			isa = PBXGroup;
-			children = (
-				A240ADF61AA11D9D00A19D30 /* PresentIOTests.swift */,
-				A240ADF41AA11D9D00A19D30 /* Supporting Files */,
-			);
-			path = PresentIOTests;
-			sourceTree = "<group>";
-		};
-		A240ADF41AA11D9D00A19D30 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A240ADF51AA11D9D00A19D30 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,24 +116,6 @@
 			productName = PresentIO;
 			productReference = A240ADDB1AA11D9D00A19D30 /* PresentIO.app */;
 			productType = "com.apple.product-type.application";
-		};
-		A240ADEF1AA11D9D00A19D30 /* PresentIOTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A240ADFD1AA11D9D00A19D30 /* Build configuration list for PBXNativeTarget "PresentIOTests" */;
-			buildPhases = (
-				A240ADEC1AA11D9D00A19D30 /* Sources */,
-				A240ADED1AA11D9D00A19D30 /* Frameworks */,
-				A240ADEE1AA11D9D00A19D30 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A240ADF21AA11D9D00A19D30 /* PBXTargetDependency */,
-			);
-			name = PresentIOTests;
-			productName = PresentIOTests;
-			productReference = A240ADF01AA11D9D00A19D30 /* PresentIOTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -196,10 +138,6 @@
 							};
 						};
 					};
-					A240ADEF1AA11D9D00A19D30 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = A240ADDA1AA11D9D00A19D30;
-					};
 				};
 			};
 			buildConfigurationList = A240ADD61AA11D9D00A19D30 /* Build configuration list for PBXProject "PresentIO" */;
@@ -217,7 +155,6 @@
 			projectRoot = "";
 			targets = (
 				A240ADDA1AA11D9D00A19D30 /* PresentIO */,
-				A240ADEF1AA11D9D00A19D30 /* PresentIOTests */,
 			);
 		};
 /* End PBXProject section */
@@ -231,13 +168,6 @@
 				A2BEAB811AAD0A9900FDFC72 /* Skin.xib in Resources */,
 				A240ADE81AA11D9D00A19D30 /* Images.xcassets in Resources */,
 				A240ADEB1AA11D9D00A19D30 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A240ADEE1AA11D9D00A19D30 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,23 +187,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A240ADEC1AA11D9D00A19D30 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A240ADF71AA11D9D00A19D30 /* PresentIOTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A240ADF21AA11D9D00A19D30 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A240ADDA1AA11D9D00A19D30 /* PresentIO */;
-			targetProxy = A240ADF11AA11D9D00A19D30 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A240ADE91AA11D9D00A19D30 /* MainMenu.xib */ = {
@@ -412,7 +326,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gborrega.presentio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -435,60 +349,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gborrega.presentio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		A240ADFE1AA11D9D00A19D30 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PresentIOTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.borrega.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PresentIO.app/Contents/MacOS/PresentIO";
-			};
-			name = Debug;
-		};
-		A240ADFF1AA11D9D00A19D30 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PresentIOTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.borrega.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PresentIO.app/Contents/MacOS/PresentIO";
 			};
 			name = Release;
 		};
@@ -509,15 +373,6 @@
 			buildConfigurations = (
 				A240ADFB1AA11D9D00A19D30 /* Debug */,
 				A240ADFC1AA11D9D00A19D30 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A240ADFD1AA11D9D00A19D30 /* Build configuration list for PBXNativeTarget "PresentIOTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A240ADFE1AA11D9D00A19D30 /* Debug */,
-				A240ADFF1AA11D9D00A19D30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -10,7 +10,7 @@ import Foundation
 import AVKit
 import AVFoundation
 
-class Device: NSObject, NSCoding {
+final class Device: NSObject, NSCoding {
     var name: String
     var uid: String
     var portraitRect: NSRect
@@ -28,6 +28,7 @@ class Device: NSObject, NSCoding {
     convenience init?(fromDevice device: AVCaptureDevice) {
         self.init(name: device.localizedName, uid: device.uniqueID, portraitRect:NSRect(), landscapeRect:NSRect())
     }
+    
     init(name: String, uid: String, portraitRect:NSRect, landscapeRect:NSRect) {
         self.name = name
         self.uid = uid
@@ -46,6 +47,7 @@ class Device: NSObject, NSCoding {
                 || landscapeRect.size.height != 0 || landscapeRect.size.width != 0
         }
     }
+    
     func savedSettingForOrientation(forOrientation: DeviceOrientation) -> NSRect {
         if forOrientation == DeviceOrientation.Portrait {
             print("Using Portrait settings for \(name): \(portraitRect)")

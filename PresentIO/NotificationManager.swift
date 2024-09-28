@@ -16,7 +16,7 @@ struct NotificationGroup {
     }
 }
 
-class NotificationManager {
+final class NotificationManager {
     private var observerTokens: [AnyObject] = []
     
     deinit {

@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -72,7 +73,7 @@
                         <items>
                             <menuItem title="Fit to screen" keyEquivalent="f" id="DVo-aG-piG">
                                 <connections>
-                                    <action selector="fitToScreen:" target="Voe-Tx-rLC" id="hnS-y6-7qS"/>
+                                    <action selector="fitToScreenWithSender:" target="Voe-Tx-rLC" id="01b-9e-Qi6"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -123,18 +124,19 @@
                     </menu>
                 </menuItem>
             </items>
+            <point key="canvasLocation" x="26" y="-36"/>
         </menu>
-        <window title="PresentIO - stream your iOS Device" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="bMR-WN-gwi">
+        <window title="PresentIO - stream your iOS Device" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="bMR-WN-gwi">
             <windowStyleMask key="styleMask" titled="YES"/>
             <rect key="contentRect" x="0.0" y="199" width="232" height="239"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="950"/>
             <value key="minSize" type="size" width="232" height="239"/>
             <view key="contentView" id="Kgw-gr-rpU">
-                <rect key="frame" x="0.0" y="-5" width="232" height="239"/>
+                <rect key="frame" x="0.0" y="0.0" width="232" height="239"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I3J-Ee-YGQ">
-                        <rect key="frame" x="28" y="87" width="176" height="17"/>
+                        <rect key="frame" x="28" y="87" width="176" height="16"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Searching for iOS devices..." id="ARA-JJ-HKJ">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -174,6 +176,6 @@
         </window>
     </objects>
     <resources>
-        <image name="PresentIO-icon" width="182.49505615234375" height="182.49505615234375"/>
+        <image name="PresentIO-icon" width="1024" height="1024"/>
     </resources>
 </document>

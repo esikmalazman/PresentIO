@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-
 import AVFoundation
 import AVKit
 
@@ -15,27 +14,25 @@ import AVKit
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     
     @IBOutlet var window: NSWindow!
-    
     @IBOutlet weak var menuItemDevice: NSMenuItem!
     @IBOutlet weak var menuDevice: NSMenu!
     @IBOutlet weak var menuItemFit: NSMenuItem!
     
-    var session : AVCaptureSession = AVCaptureSession()
     
     let notifications = NotificationManager()
+    
+    var session : AVCaptureSession = AVCaptureSession()
     var devices : [AVCaptureDevice] = []
     var deviceSessions : [AVCaptureDevice: Skin] = [:]
-    
     var deviceSettings : [Device] = []
     var deviceSettingsLoaded = false
-    
     var selectedDevice : Skin? {
         didSet {
             updateMenu()
         }
     }
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ notification: Notification) {
         self.selectedDevice = nil
         
         // Opt-in for getting visibility on connected screen capture devices (iphone/ipad)
@@ -44,13 +41,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         self.loadObservers()
         
         // Required to receive the AVCaptureDeviceWasConnectedNotification
-        //self.session.startRunning()
+        self.session.startRunning()
         
         self.refreshDevices()
     }
     
+    
     func loadDeviceSettings() {
-        let loaded = NSKeyedUnarchiver.unarchiveObjectWithFile(Device.ArchivePath) as? [Device]
+        let loaded = NSKeyedUnarchiver.unarchiveObject(withFile: Device.ArchivePath) as? [Device]
         if loaded != nil {
             self.deviceSettings = loaded!
         } else {
@@ -131,6 +129,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let frameView = NSMakeRect(0, 0,size.width, size.height)
         
         let skin = Skin(frame: frameView)
+        skin.session = session
         skin.initWithDevice(device: device)
         skin.ownerWindow = window
         window.contentView!.addSubview(skin)
@@ -147,8 +146,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     func refreshDevices() {
-        self.devices = AVCaptureDevice.devices(for:.muxed)
-        +  AVCaptureDevice.devices(for: .video) as! [AVCaptureDevice]
+        self.devices = AVCaptureDevice.devices(for:.muxed) + AVCaptureDevice.devices(for: .video)
         
         // A running device was disconnected?
         for(device, deviceView) in deviceSessions {

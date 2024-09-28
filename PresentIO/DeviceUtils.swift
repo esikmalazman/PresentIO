@@ -21,7 +21,7 @@ enum DeviceOrientation {
     case Landscape
 }
 
-class DeviceUtils {
+final class DeviceUtils {
     
     var type: DeviceType
     var skinSize: NSSize! //video dimensions
@@ -48,6 +48,7 @@ class DeviceUtils {
     class func initWithDimensions(dimensions:CMVideoDimensions) -> DeviceUtils {
         
         var device : DeviceUtils
+        
         if((dimensions.width == 1024 && dimensions.height == 768)
            || (dimensions.width == 768 && dimensions.height == 1024)
            || (dimensions.width == 900 && dimensions.height == 1200)
