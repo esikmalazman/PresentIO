@@ -18,13 +18,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     @IBOutlet weak var menuDevice: NSMenu!
     @IBOutlet weak var menuItemFit: NSMenuItem!
     
-    
     let notifications = NotificationManager()
     
     var session : AVCaptureSession = AVCaptureSession()
     var devices : [AVCaptureDevice] = []
-    var deviceSessions : [AVCaptureDevice: Skin] = [:]
-    var deviceSettings : [Device] = []
+    var deviceSessions : [AVCaptureDevice: Skin] = [:] {
+        didSet { dump(deviceSessions) }
+    }
+    var deviceSettings : [Device] = [] {
+        didSet { dump(deviceSettings) }
+    }
+    
     var deviceSettingsLoaded = false
     var selectedDevice : Skin? {
         didSet {
@@ -34,7 +38,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         self.selectedDevice = nil
-        
         // Opt-in for getting visibility on connected screen capture devices (iphone/ipad)
         DeviceUtils.registerForScreenCaptureDevices()
         
@@ -46,6 +49,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         self.refreshDevices()
     }
     
+    func applicationWillTerminate(_ notification: Notification) {
+        self.notifications.deregisterAll()
+    }
     
     func loadDeviceSettings() {
         let loaded = NSKeyedUnarchiver.unarchiveObject(withFile: Device.ArchivePath) as? [Device]
@@ -67,9 +73,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     func findDeviceSettings(device: AVCaptureDevice) -> Device {
-        if (!deviceSettingsLoaded ) {
+        if !deviceSettingsLoaded {
             loadDeviceSettings()
         }
+        
         for d in deviceSettings {
             if d.uid == device.uniqueID {
                 return d
@@ -80,12 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         self.deviceSettings.append(newDevice)
         return newDevice
     }
-    
-    
-    func applicationWillTerminate(aNotification: NSNotification) {
-        self.notifications.deregisterAll()
-    }
-    
+
     func loadObservers() {
         notifications.registerObserver(name: NSNotification.Name.AVCaptureSessionRuntimeError.rawValue, forObject: session, dispatchAsyncToMainQueue: true, block: {note in
             let err = note.userInfo![AVCaptureSessionErrorKey] as! NSError
@@ -116,6 +118,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     func startNewSession(device:AVCaptureDevice) -> Skin {
         let size = DeviceUtils(deviceType: .iPhone).skinSize ?? .zero
         let mainScreenFrame = NSScreen.main?.frame ?? .zero
+        
         let frame = DeviceUtils.getCenteredRect(windowSize: size, screenFrame: mainScreenFrame)
         
         let window = NSWindow(
@@ -140,7 +143,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         window.backgroundColor = NSColor.clear
         window.isOpaque = false
         
-        window.makeKeyAndOrderFront(NSApp)
+        window.makeKeyAndOrderFront(self)
         
         return skin
     }
@@ -160,7 +163,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         // A new device connected?
         for device in self.devices {
             if device.modelID == "iOS Device" {
-                if (!self.deviceSessions.keys.contains(device)) {
+                if !self.deviceSessions.keys.contains(device) {
                     
                     // support only one session for now, until multiple devices videos start working
                     if(self.deviceSessions.count > 0) {
@@ -182,7 +185,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         if self.deviceSessions.count > 0 {
             self.window!.close()
         } else {
-            self.window!.makeKeyAndOrderFront(NSApp)
+            self.window!.makeKeyAndOrderFront(self)
         }
     }
     

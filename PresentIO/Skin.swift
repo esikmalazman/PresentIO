@@ -240,8 +240,9 @@ class Skin: NSView {
                         
                         
                     } else {
+                        guard let window = self.window else {return}
                         // Calculate new size to fit screen. -50 is just to give some margins for OS menubar, etc.
-                        var screenFrame = self.window!.screen!.visibleFrame
+                        var screenFrame = window.screen!.visibleFrame
                         screenFrame.size.height -= 50
                         screenFrame.size.width -= 50
                         windowSize = NSSize(fromCGSize: windowSize).scaleToFit(targetSize: screenFrame.size)

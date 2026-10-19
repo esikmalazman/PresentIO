@@ -79,9 +79,10 @@ final class DeviceUtils {
         case .iPad:
             size = NSSize(width: 435,height: 646) // 768x1024 (ipad mini)
         }
-        return self.orientation == .Portrait ?
-        NSSize(width: size.width, height: size.height) :
-        NSSize(width: size.height, height: size.width)
+        
+        let portraitSize = NSSize(width: size.width, height: size.height)
+        let landscapeSize =  NSSize(width: size.height, height: size.width)
+        return self.orientation == .Portrait ?portraitSize : landscapeSize
     }
     
     func getFrame() -> CGRect {
